@@ -47,7 +47,7 @@ jobs:
         run: aws deploy create-deployment
           --application-name instagram-server
           --deployment-config-name CodeDeployDefault.AllAtOnce
-          --deployment-group-name Production
+          --deployment-group-name production
           --s3-location bucket=instagram-server-gijin,bundleType=tgz,key=$GITHUB_SHA.tar.gz
 
 
