@@ -20,11 +20,12 @@ jobs:
       - name: application.yml 만들기
         run: echo "${{ secrets.APPLICATION_PROPERTIES }}" > ./src/main/resources/application.yml
 
+      - name: 실행 권한 부여
+        run: chmod +x ./gradlew
+
       - name: 테스트 및 빌드
-        with:
-          script: |
-            chmod +x ./gradlew
-            ./gradlew clean build
+        run: ./gradlew clean build
+
 
       - name: 빌드명 변경하기
         run: mv ./build/libs/*SNAPSHOT.jar ./project.jar
