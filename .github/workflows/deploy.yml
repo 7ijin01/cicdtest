@@ -42,7 +42,7 @@ jobs:
         run: docker tag cicdtest ${{ steps.login-ecr.outputs.registry }}/cicdtest:latest
 
       - name: ECR에 Docker 이미지 Push하기
-        run: docker push ${{ steps.login-ecr.outputs.registry }}/cicdtest:latest
+        run: docker push ${{ steps.login-ecr.outputs.registry }}/2025-03-04-server:latest
 
       - name: SSH로 EC2에 접속하기
         uses: appleboy/ssh-action@v1.0.3
@@ -54,7 +54,7 @@ jobs:
           script: |
             docker stop cicdtest || true
             docker rm cicdtest || true
-            docker pull ${{ steps.login-ecr.outputs.registry }}/cicdtest:latest
+            docker pull ${{ steps.login-ecr.outputs.registry }}/2025-03-04-server:latest
             docker run -d --name cicdtest -p 8080:8080 ${{ steps.login-ecr.outputs.registry }}/cicdtest:latest
 
 
